@@ -7,260 +7,85 @@
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --border: #E2DDD6;
-    --text: #1A1814;
-    --muted: #7A756E;
-    --hint: #B0AA9F;
-    --accent: #2D5A3D;
-    --accent-light: #EAF2EC;
-    --danger: #C0392B;
-    --radius: 10px;
-    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    --bg: #F7F5F0; --surface: #FFFFFF; --border: #E2DDD6;
+    --text: #1A1814; --muted: #7A756E; --hint: #B0AA9F;
+    --accent: #2D5A3D; --accent-light: #EAF2EC;
+    --danger: #C0392B; --radius: 10px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
   }
-
-  body {
-    font-family: 'Sarabun', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-
+  body { font-family: 'Sarabun', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem 4rem; }
   .container { max-width: 640px; margin: 0 auto; }
-
-  .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 2.5rem;
-  }
-  .logo {
-    width: 40px; height: 40px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 2.5rem; }
+  .logo { width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
   .logo svg { width: 22px; height: 22px; }
   .top-bar h1 { font-size: 20px; font-weight: 600; }
   .top-bar p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-  .card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 1.75rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-  }
-
-  .card-title {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 1.25rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
+  .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.75rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+  .card-title { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media(max-width:500px){ .row { grid-template-columns: 1fr; } }
-
   .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .field:last-child { margin-bottom: 0; }
   label { font-size: 13px; color: var(--muted); }
   label .req { color: var(--danger); }
-
-  input, select, textarea {
-    font-family: 'Sarabun', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
-    width: 100%;
-    transition: border-color .2s, background .2s;
-    outline: none;
-  }
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--accent);
-    background: #fff;
-  }
+  input, select, textarea { font-family: 'Sarabun', sans-serif; font-size: 15px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; width: 100%; transition: border-color .2s, background .2s; outline: none; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); background: #fff; }
   textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   select { cursor: pointer; }
-
-  .upload-area {
-    border: 1.5px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 2rem 1rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color .2s, background .2s;
-    background: var(--bg);
-  }
-  .upload-area:hover { border-color: var(--accent); background: var(--accent-light); }
-  .upload-area.active { border-color: var(--accent); background: var(--accent-light); }
+  .upload-area { border: 1.5px dashed var(--border); border-radius: var(--radius); padding: 2rem 1rem; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: var(--bg); }
+  .upload-area:hover, .upload-area.active { border-color: var(--accent); background: var(--accent-light); }
   .upload-icon { font-size: 28px; margin-bottom: 8px; }
   .upload-area p { font-size: 14px; color: var(--muted); }
   .upload-area small { font-size: 12px; color: var(--hint); }
-  .file-name {
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 500;
-    display: none;
-  }
-
-  .consent-box {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 12px 14px;
-  }
-  .consent-box input[type="checkbox"] {
-    width: 18px; height: 18px; min-width: 18px;
-    margin-top: 1px;
-    cursor: pointer;
-    accent-color: var(--accent);
-  }
+  .file-name { margin-top: 10px; font-size: 13px; color: var(--accent); font-weight: 500; display: none; }
+  .consent-box { display: flex; align-items: flex-start; gap: 10px; background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+  .consent-box input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; margin-top: 1px; cursor: pointer; accent-color: var(--accent); }
   .consent-box label { font-size: 13px; color: var(--muted); line-height: 1.6; cursor: pointer; }
-
-  .btn-submit {
-    width: 100%;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    padding: 14px;
-    font-family: 'Sarabun', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity .2s, transform .1s;
-    margin-top: 1rem;
-  }
+  .btn-submit { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 14px; font-family: 'Sarabun', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity .2s; margin-top: 1rem; }
   .btn-submit:hover { opacity: .9; }
-  .btn-submit:active { transform: scale(.99); }
   .btn-submit:disabled { opacity: .5; cursor: not-allowed; }
-
-  .error-msg {
-    font-size: 12px;
-    color: var(--danger);
-    margin-top: 4px;
-    display: none;
-  }
-
-  /* Success screen */
-  #successView {
-    display: none;
-    text-align: center;
-    padding: 4rem 1rem;
-  }
-  .success-icon {
-    width: 72px; height: 72px;
-    background: var(--accent-light);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.5rem;
-  }
+  .saving-indicator { text-align: center; font-size: 13px; color: var(--hint); padding: 8px; display: none; }
+  #successView { display: none; text-align: center; padding: 4rem 1rem; }
+  .success-icon { width: 72px; height: 72px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
   .success-icon svg { width: 36px; height: 36px; }
   #successView h2 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
   #successView p { font-size: 15px; color: var(--muted); line-height: 1.7; }
-  .ref-box {
-    display: inline-block;
-    background: var(--accent-light);
-    border: 1px solid #b8d9c0;
-    border-radius: 8px;
-    padding: 8px 20px;
-    margin-top: 1.5rem;
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .saving-indicator {
-    text-align: center;
-    font-size: 13px;
-    color: var(--hint);
-    padding: 8px;
-    display: none;
-  }
-
-  .status-badge {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-left: 8px;
-  }
-  .badge-live { background: #e8f5e9; color: #2e7d32; }
-  .badge-offline { background: #fff3e0; color: #e65100; }
+  .ref-box { display: inline-block; background: var(--accent-light); border: 1px solid #b8d9c0; border-radius: 8px; padding: 8px 20px; margin-top: 1.5rem; font-size: 13px; color: var(--accent); font-weight: 600; }
 </style>
 </head>
 <body>
 <div class="container">
-
   <div class="top-bar">
     <div class="logo">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2"/>
         <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-        <line x1="12" y1="12" x2="12" y2="16"/>
-        <line x1="10" y1="14" x2="14" y2="14"/>
+        <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
       </svg>
     </div>
     <div>
-      <h1>สมัครงาน <span id="storageBadge" class="status-badge badge-live">● ออนไลน์</span></h1>
+      <h1>สมัครงาน</h1>
       <p>กรอกข้อมูลให้ครบถ้วน ทีมงานจะติดต่อกลับภายใน 1–3 วันทำการ</p>
     </div>
   </div>
 
   <div id="formView">
-
-    <!-- Personal -->
     <div class="card">
       <div class="card-title">ข้อมูลส่วนตัว</div>
       <div class="row">
-        <div class="field">
-          <label>ชื่อจริง <span class="req">*</span></label>
-          <input type="text" id="fname" placeholder="ชื่อ" />
-        </div>
-        <div class="field">
-          <label>นามสกุล <span class="req">*</span></label>
-          <input type="text" id="lname" placeholder="นามสกุล" />
-        </div>
+        <div class="field"><label>ชื่อจริง <span class="req">*</span></label><input type="text" id="fname" placeholder="ชื่อ"></div>
+        <div class="field"><label>นามสกุล <span class="req">*</span></label><input type="text" id="lname" placeholder="นามสกุล"></div>
       </div>
       <div class="row">
-        <div class="field">
-          <label>ID Line <span class="req">*</span></label>
-          <input type="text" id="email" placeholder="ID Line" />
-        </div>
-        <div class="field">
-          <label>เบอร์โทรศัพท์ <span class="req">*</span></label>
-          <input type="tel" id="phone" placeholder="08X-XXX-XXXX" />
-        </div>
+        <div class="field"><label>ID Line <span class="req">*</span></label><input type="text" id="lineId" placeholder="ID Line"></div>
+        <div class="field"><label>เบอร์โทรศัพท์ <span class="req">*</span></label><input type="tel" id="phone" placeholder="08X-XXX-XXXX"></div>
       </div>
-      <div class="field">
-        <label>ที่อยู่ปัจจุบัน</label>
-        <input type="text" id="address" placeholder="จังหวัด / เขต" />
-      </div>
+      <div class="field"><label>ที่อยู่ปัจจุบัน</label><input type="text" id="address" placeholder="จังหวัด / เขต"></div>
     </div>
 
-    <!-- Application -->
     <div class="card">
       <div class="card-title">ข้อมูลการสมัคร</div>
-      <div class="field">
-        <label>ตำแหน่งที่ต้องการสมัคร <span class="req">*</span></label>
-        <input type="text" id="position" placeholder="ระบุตำแหน่งที่ต้องการสมัคร" />
-      </div>
+      <div class="field"><label>ตำแหน่งที่ต้องการสมัคร <span class="req">*</span></label><input type="text" id="position" placeholder="ระบุตำแหน่งที่ต้องการสมัคร"></div>
       <div class="row">
         <div class="field">
           <label>สาขาที่ต้องการสมัคร <span class="req">*</span></label>
@@ -272,10 +97,7 @@
             <option>ฝ่ายผลิต</option>
           </select>
         </div>
-        <div class="field">
-          <label>เงินเดือนที่ต้องการ (บาท)</label>
-          <input type="text" id="salary" />
-        </div>
+        <div class="field"><label>เงินเดือนที่ต้องการ (บาท)</label><input type="text" id="salary"></div>
       </div>
       <div class="row">
         <div class="field">
@@ -303,58 +125,50 @@
       </div>
       <div class="field" id="studyingField" style="display:none">
         <label>ระดับชั้นที่กำลังศึกษา</label>
-        <input type="text" id="studyingLevel" placeholder="เช่น ปวช. ปี 2 / ม.6 / ปริญญาตรี ปี 3" />
+        <input type="text" id="studyingLevel" placeholder="เช่น ปวช. ปี 2 / ม.6 / ปริญญาตรี ปี 3">
       </div>
     </div>
 
-    <!-- About -->
     <div class="card">
       <div class="card-title">แนะนำตัวเอง</div>
       <div class="field">
         <label>บอกเล่าเกี่ยวกับตัวเอง ทักษะ และเหตุผลที่อยากร่วมงาน</label>
-        <textarea id="about" placeholder="เล่าให้เราฟังว่าคุณเป็นใคร มีประสบการณ์อะไรบ้าง และทำไมถึงอยากร่วมงานกับเรา..." rows="5"></textarea>
+        <textarea id="about" rows="5" placeholder="เล่าให้เราฟังว่าคุณเป็นใคร มีประสบการณ์อะไรบ้าง..."></textarea>
       </div>
     </div>
 
-    <!-- Upload -->
     <div class="card">
       <div class="card-title">เอกสารประกอบ</div>
       <div class="upload-area" id="uploadArea" onclick="document.getElementById('resumeFile').click()" style="margin-bottom:12px">
         <div class="upload-icon">📄</div>
         <p>เอกสารที่ 1 — คลิกหรือลากไฟล์มาวางที่นี่</p>
-        <small>Resume / CV — รองรับ PDF, DOC, DOCX, JPG, PNG (ขนาดไม่เกิน 5 MB)</small>
+        <small>Resume / CV — PDF, DOC, DOCX, JPG, PNG (ไม่เกิน 5 MB)</small>
         <div class="file-name" id="fileName"></div>
       </div>
       <input type="file" id="resumeFile" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none">
-
       <div class="upload-area" id="uploadArea2" onclick="document.getElementById('resumeFile2').click()">
         <div class="upload-icon">📎</div>
         <p>เอกสารที่ 2 — คลิกหรือลากไฟล์มาวางที่นี่</p>
-        <small>พอร์ตโฟลิโอ / ใบรับรอง / เอกสารอื่นๆ — รองรับ PDF, DOC, DOCX, JPG, PNG (ขนาดไม่เกิน 5 MB)</small>
+        <small>พอร์ตโฟลิโอ / ใบรับรอง / เอกสารอื่นๆ</small>
         <div class="file-name" id="fileName2"></div>
       </div>
       <input type="file" id="resumeFile2" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none">
     </div>
 
-    <!-- Consent -->
     <div class="card">
       <div class="consent-box">
-        <input type="checkbox" id="consent" />
+        <input type="checkbox" id="consent">
         <label for="consent">ข้าพเจ้ายินยอมให้บริษัทเก็บรวบรวมและใช้ข้อมูลส่วนบุคคลที่ให้ไว้ เพื่อวัตถุประสงค์ในการพิจารณาการสมัครงาน ตามพ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)</label>
       </div>
     </div>
 
     <div class="saving-indicator" id="savingIndicator">⏳ กำลังบันทึก...</div>
     <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">ส่งใบสมัคร →</button>
+  </div>
 
-  </div><!-- /formView -->
-
-  <!-- Success -->
   <div id="successView">
     <div class="success-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#2D5A3D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2D5A3D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h2>ส่งใบสมัครสำเร็จ!</h2>
     <p>ขอบคุณที่สนใจร่วมงานกับเรา<br>ทีมงานจะตรวจสอบและติดต่อกลับภายใน 1–3 วันทำการ</p>
@@ -362,127 +176,74 @@
     <br><br>
     <button class="btn-submit" style="max-width:200px;margin:0 auto;display:block" onclick="location.reload()">สมัครใหม่</button>
   </div>
-
-</div><!-- /container -->
+</div>
 
 <script>
-// ===== Persistent Storage via window.storage (Claude Artifact API) =====
-var STORAGE_KEY = 'job_applications';
-
-function genRef() {
-  return 'APP-' + Date.now().toString(36).toUpperCase();
-}
-
-document.getElementById('resumeFile').addEventListener('change', function() {
-  if (this.files && this.files[0]) {
-    var fn = document.getElementById('fileName');
-    fn.textContent = '✓ ' + this.files[0].name;
-    fn.style.display = 'block';
-    document.getElementById('uploadArea').classList.add('active');
-  }
-});
-
-document.getElementById('resumeFile2').addEventListener('change', function() {
-  if (this.files && this.files[0]) {
-    var fn = document.getElementById('fileName2');
-    fn.textContent = '✓ ' + this.files[0].name;
-    fn.style.display = 'block';
-    document.getElementById('uploadArea2').classList.add('active');
-  }
-});
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbyy9FD27msOEiiiy-L-lozfu3wgDx2CSZ3_6Gajubr1fWOLacp6ExlLRolapSN6g5ctUA/exec';
 
 function toggleStudying(sel) {
   document.getElementById('studyingField').style.display = sel.value === 'กำลังศึกษา' ? 'flex' : 'none';
 }
+document.getElementById('resumeFile').addEventListener('change', function() {
+  if (this.files[0]) { document.getElementById('fileName').textContent = '✓ ' + this.files[0].name; document.getElementById('fileName').style.display = 'block'; document.getElementById('uploadArea').classList.add('active'); }
+});
+document.getElementById('resumeFile2').addEventListener('change', function() {
+  if (this.files[0]) { document.getElementById('fileName2').textContent = '✓ ' + this.files[0].name; document.getElementById('fileName2').style.display = 'block'; document.getElementById('uploadArea2').classList.add('active'); }
+});
 
-async function loadApplications() {
-  try {
-    var result = await window.storage.get(STORAGE_KEY, true);
-    return result ? JSON.parse(result.value) : [];
-  } catch(e) {
-    return [];
-  }
-}
-
-async function saveApplication(app) {
-  var apps = await loadApplications();
-  apps.push(app);
-  await window.storage.set(STORAGE_KEY, JSON.stringify(apps), true);
-}
+function genRef() { return 'APP-' + Date.now().toString(36).toUpperCase(); }
 
 async function handleSubmit() {
-  var fname = document.getElementById('fname').value.trim();
-  var lname = document.getElementById('lname').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var phone = document.getElementById('phone').value.trim();
+  var fname    = document.getElementById('fname').value.trim();
+  var lname    = document.getElementById('lname').value.trim();
+  var lineId   = document.getElementById('lineId').value.trim();
+  var phone    = document.getElementById('phone').value.trim();
   var position = document.getElementById('position').value.trim();
-  var branch = document.getElementById('branch').value;
-  var consent = document.getElementById('consent').checked;
-
-  if (!fname || !lname || !email || !phone || !position || !branch) {
-    alert('กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน');
-    return;
-  }
-  if (!consent) {
-    alert('กรุณายอมรับข้อตกลงการใช้ข้อมูลส่วนบุคคลก่อนส่งใบสมัคร');
-    return;
-  }
+  var branch   = document.getElementById('branch').value;
+  if (!fname || !lname || !lineId || !phone || !position || !branch) { alert('กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน'); return; }
+  if (!document.getElementById('consent').checked) { alert('กรุณายอมรับข้อตกลง PDPA ก่อนส่งใบสมัคร'); return; }
 
   var btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'กำลังบันทึก...';
+  btn.disabled = true; btn.textContent = 'กำลังบันทึก...';
   document.getElementById('savingIndicator').style.display = 'block';
 
-  var ref = genRef();
   var eduVal = document.getElementById('edu').value;
-  if (eduVal === 'กำลังศึกษา') {
-    var lvl = document.getElementById('studyingLevel').value.trim();
-    if (lvl) eduVal = 'กำลังศึกษา — ' + lvl;
-  }
-  var app = {
+  if (eduVal === 'กำลังศึกษา') { var lvl = document.getElementById('studyingLevel').value.trim(); if (lvl) eduVal = 'กำลังศึกษา — ' + lvl; }
+  var f1 = document.getElementById('resumeFile').files[0];
+  var f2 = document.getElementById('resumeFile2').files[0];
+  var ref = genRef();
+
+  var payload = {
     ref: ref,
-    submittedAt: new Date().toISOString(),
-    fname: fname,
-    lname: lname,
-    lineId: email,
-    phone: phone,
+    submittedAt: new Date().toLocaleString('th-TH'),
+    fname: fname, lname: lname, lineId: lineId, phone: phone,
     address: document.getElementById('address').value.trim(),
-    position: position,
-    branch: branch,
+    position: position, branch: branch,
     salary: document.getElementById('salary').value.trim(),
     exp: document.getElementById('exp').value,
     edu: eduVal,
     about: document.getElementById('about').value.trim(),
-    resumeFile: document.getElementById('resumeFile').files[0] ? document.getElementById('resumeFile').files[0].name : '',
-    resumeFile2: document.getElementById('resumeFile2').files[0] ? document.getElementById('resumeFile2').files[0].name : '',
-    status: 'รอพิจารณา'
+    resumeFile: f1 ? f1.name : '',
+    resumeFile2: f2 ? f2.name : ''
   };
 
   try {
-    await saveApplication(app);
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
     document.getElementById('savingIndicator').style.display = 'none';
     document.getElementById('formView').style.display = 'none';
     document.getElementById('successView').style.display = 'block';
     document.getElementById('refCode').textContent = 'รหัสอ้างอิง: ' + ref;
   } catch(e) {
-    btn.disabled = false;
-    btn.textContent = 'ส่งใบสมัคร →';
+    btn.disabled = false; btn.textContent = 'ส่งใบสมัคร →';
     document.getElementById('savingIndicator').style.display = 'none';
-    alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง');
+    alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง');
   }
 }
-
-// Check storage availability
-(async function() {
-  try {
-    await window.storage.set('_ping', '1', true);
-    document.getElementById('storageBadge').textContent = '● ออนไลน์';
-    document.getElementById('storageBadge').className = 'status-badge badge-live';
-  } catch(e) {
-    document.getElementById('storageBadge').textContent = '● ออฟไลน์';
-    document.getElementById('storageBadge').className = 'status-badge badge-offline';
-  }
-})();
 </script>
 </body>
 </html>
